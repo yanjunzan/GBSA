@@ -5,7 +5,7 @@ read_trio <- function(of_id,F_id,M_id,vcf.file,pathout,generate.input=T){
     require(data.table)
   if(generate.input){
     cat("1.Format data using python","\n")
-    # py.script <- system.file(package="GBSA") # need to test here
+    py.script <- paste(system.file(package="GBSA"),"/Read.vcf.py",sep="")
     bash  <- paste(py.script,of_id," ",F_id," ",M_id,vcf.file ," ",pathout,sep="")
     system(bash)
     cat("1.Format completed","\n")
