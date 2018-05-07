@@ -19,5 +19,6 @@ Imports:
   qtl,
   zoo,
   dplyr,
-  pbmcapply
+  pbmcapply,
+  data.table
   

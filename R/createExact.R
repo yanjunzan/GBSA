@@ -1,6 +1,7 @@
 createExact <- function(cutoffLevel,pedigreeTable,matchingNames,bin.size,pathout){
-  py.script <- paste(system.file(package="GBSA"),"/read.vcf.grand.p.py",sep="")
-  all.chr  <- read.table(matchingNames, stringsAsFactors = FALSE, header = TRUE, sep = "\t")
+  #py.script <- paste(system.file(package="GBSA"),"/read.vcf.grand.p.py",sep="")
+  #all.chr  <- read.table(matchingNames, stringsAsFactors = FALSE, header = TRUE, sep = "\t")
+  all.chr <- matchingNames
   chroms <- all.chr$INSDC
   chroms.len <- all.chr$Size.Mb.*1e6
   ##cut.number <- 20 # cutoff on each bin
@@ -23,9 +24,12 @@ createExact <- function(cutoffLevel,pedigreeTable,matchingNames,bin.size,pathout
   #data1List <- read_grand.p(pedigreeTable, vcf.file = vcf.file.f2, pathout = outFolder, py = py.script, generate.input = FALSE)
   # createPath <- function(x){return(paste0(pathout, "/", x, ".vcf"))}
   # pathList <- lapply(pedigreeTable$id.f2, createPath)
+  all.vcf <- list.files(path =pathout,pattern = ".vcf" )
+
   for (i in  1:nrow(pedigreeTable)) {
     #data1 <- data1List[[i]]
-    file_path.now <-  paste0(pathout, "/", pedigreeTable$id.f2[i], ".vcf")
+    file_path.now <-  paste0(pathout, "/", all.vcf[i])
+
     data1 <- readFile(file_path.now)
     ## loop individual first so we read in each individual only once
     for (k in 1:length(chroms) ) {
@@ -43,7 +47,7 @@ createExact <- function(cutoffLevel,pedigreeTable,matchingNames,bin.size,pathout
     cat("\n", i, "-", pedigreeTable$id.f2[i], "done", "\n")
   }
   #dim(genotype.hap1)
-  write.table(genotype.hap1,  file = paste0(pathout,  ".exact.csv"), quote = FALSE, sep = "\t")
-  write.table(markers.hap1,  file = paste0(pathout,  ".markers.csv"), quote = FALSE, sep = "\t")
+  write.table(genotype.hap1,  file = paste0(pathout,  "Genotype.exact.csv"), quote = FALSE, sep = "\t")
+  write.table(markers.hap1,  file = paste0(pathout,  "Genotype.markers.csv"), quote = FALSE, sep = "\t")
   return(list("genotype"=genotype.hap1,"num.marker"=markers.hap1))
 }

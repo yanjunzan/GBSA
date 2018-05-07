@@ -1,4 +1,6 @@
 readFile <- function(pathFile){
+  if(!require(data.table))
+      require(data.table)
       if (file.size(pathFile) > 0){
         print(pathFile)
         input <- fread(pathFile)

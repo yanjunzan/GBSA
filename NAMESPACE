@@ -1,4 +1,5 @@
 export(
+arbitrary.cut,
 arbitrary.cut.missing,
 createExact,
 format_grand.p,
@@ -7,5 +8,6 @@ read_trio,
 readFile,
 tracing_physical,
 vcf.header,
-calculate.origin.phy
+calculate.origin.phy,
+export2rqtl
 )

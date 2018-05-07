@@ -1,15 +1,14 @@
-\name{read_grand.p}
-\alias{read_grand.p}
+\name{format_grand.p}
+\alias{format_grand.p}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   format the genotype in the vcf file
-
 }
 \description{
 Give four grand parental ID in a divergent cross, this function screen the fixed sites within family and extract those called sites in an offspring.
 }
 \usage{
-read_grand.p(x)
+read_grand.p(pedigreeTable, vcf.file, pathout,Core=5,pattern=paste("(^F2_",of_id,".*)|(^",of_id,"_F2.*)",sep=""))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,10 +20,9 @@ read_grand.p(x)
  %% \item{generate.input}{ T means only generate intermediate files, F means read in the intermediate file}
 }
 \details{
-We recommend a two step run: i) turn on generate.input to create the intermediate file only; ii) turn off the generate.input to read in the data.
 }
 \value{
-return a data.table object with gentoype of the sites fixed in this particular family and this indiviudal in columns. Each row is a site which is fixed between parental and has genotype call for this particular offspring.
+this would write out a few intermediate files
 }
 \references{
 Yanjun Zan, Thibaut Payen, Leif Andersson, Paul B. Siegel and Örjan Carlborg;Whole-genome QTL mapping in experimental pedigrees from outbred founders utilizing low coverage individual based sequencing 2018
