@@ -1,11 +1,3 @@
-  
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 ### 1. Intorduction
 
 This is a tutorial for R package GBSA. This package is developed for Whole-genome QTL mapping in experimental pedigrees from outbred founders utilizing low coverage individual based sequencing.
