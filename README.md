@@ -1,19 +1,4 @@
----
-title: "GBSA package tutorial"
-author: "Yanjun Zan, Thibaut Payen, Örjan Carlborg"
-date: "7 May 2018"
-output:
-  pdf_document: default
-  html_document: default
----
   
----
-title: "Content"
-output:
-  html_document:
-    toc: true
-    toc_depth: 2
----
 
 
 ```{r setup, include=FALSE}
