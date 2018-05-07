@@ -1,19 +1,29 @@
 #!/usr/bin/python
-import re  # regular expression
+
+import re
 import sys
 import gzip
-#  import pandas
+import argparse
+import os
 
-ID_of = re.compile(str(sys.argv[1]))
-Fid = re.compile(str(sys.argv[2]))
-Mid = re.compile(sys.argv[3])
-vcf_file = str(sys.argv[4])
-out_file = str(sys.argv[5])
-# ID_of = re.compile("175")
-# Fid = re.compile(".*1997.*")
-# Mid = re.compile(".*1812.*")
-# vcf_file = "/Users/yanjunzan/Documents/impute/data/testplate.F1/chr1_CM000093.4.recode.vcf.gz"
-sys.stdout = open(out_file, "wt")
+parser = argparse.ArgumentParser(description='Create a file containing the parental and offspring genotypes')
+parser.add_argument('--ID_of', help='A list of offsprings names', type=str, nargs='+')
+parser.add_argument('Fid', help='A grand parent: Side:Father, Pheno: High', type=str)
+parser.add_argument('Mid', help='A grand parent: Side: Mother, Pheno: low', type=str)
+parser.add_argument('vcf_file', help='The gVCF with all the SNPs for all individuals', type=str)
+parser.add_argument('out_folder', help='A folder to put the outputs ', type=str)
+args = parser.parse_args()
+
+ID_of_List = args.ID_of
+Fid = args.Fid
+Mid = args.Mid
+
+vcf_file = args.vcf_file
+out_folder = args.out_folder
+
+out_files = dict()
+for ID_of in ID_of_List:
+    out_files[ID_of] =  open(os.path.join(out_folder, ID_of + ".vcf"), "wt")
 
 
 def find_index(name, lines):
@@ -35,14 +45,18 @@ def get_geno(x):
 with gzip.open(vcf_file, "rb") as vcf:
     for line in vcf:
         if re.match(b"^##", line):
-            pass
+            continue
         elif re.match(b"^#CHROM", line):
             line = line.decode().rstrip("\n")
             header = re.split("\t", line)
-            index_off = find_index(ID_of, header)
+            index_off_Dict = dict()
+            for ID_of in ID_of_List:
+                index_off_Dict[ID_of] = find_index(ID_of, header)
             index_F = find_index(Fid, header)
             index_M = find_index(Mid, header)
             #  print(index_off, index_F, index_M)
+        elif line == b"\n":
+            continue
         else:
             line = line.decode().rstrip("\n")
             con = re.split("\t", line)
@@ -53,18 +67,26 @@ with gzip.open(vcf_file, "rb") as vcf:
             ALT = con[4]
             if len(REF) > 1 or len(ALT) > 1:
                 pass
-            elif re.match("\.", con[index_off[0]]):
-                pass
             elif re.match("\.", con[index_F[0]]):
                 pass
             elif re.match("\.", con[index_M[0]]):
                 pass
             else:
-                geno_of1 = int(get_geno(con[index_off[0]])[0])
-                geno_of2 = int(get_geno(con[index_off[0]])[1])
+                #geno_of1 = int(get_geno(con[index_off[0]])[0])
+                #geno_of2 = int(get_geno(con[index_off[0]])[1])
                 geno_F1 = int(get_geno(con[index_F[0]])[0])
                 geno_F2 = int(get_geno(con[index_F[0]])[1])
                 geno_M1 = int(get_geno(con[index_M[0]])[0])
                 geno_M2 = int(get_geno(con[index_M[0]])[1])
                 if not (sum([geno_F1, geno_F2, geno_M1, geno_M2]) == 0 or sum([geno_F1, geno_F2, geno_M1, geno_M1]) == 4):
-                    print(Chr, Pos, REF, ALT, geno_F1, geno_F2, geno_M1, geno_M2, geno_of1, geno_of2, sep="\t")
+                    for ID_of in ID_of_List:
+                        geno_of1 = int(get_geno(con[index_off_Dict[ID_of][0]])[0])
+                        geno_of2 = int(get_geno(con[index_off_Dict[ID_of][0]])[1])
+                        if geno_of1 == 5 or geno_of2 == 5:
+                            continue
+                        else:
+                            print(Chr, Pos, REF, ALT, geno_F1, geno_F2, geno_M1, geno_M2, geno_of1, geno_of2,
+                                  sep="\t", file=out_files[ID_of])
+
+[outFile.close() for outFile in out_files.values()]
+

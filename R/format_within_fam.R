@@ -1,4 +1,4 @@
-format_grand.p <- function(pedigreeTable, vcf.file, pathout,Core=5,pattern=paste("(^F2_",of_id,".*)|(^",of_id,"_F2.*)",sep="")) { #generate.input = TRUE
+format_within_fam <- function(pedigreeTable, vcf.file, pathout,Core=5,pattern=paste("(^F2_",of_id,".*)|(^",of_id,"_F2.*)",sep="")) { #generate.input = TRUE
     if(!require(dplyr))
        require(dplyr)
     if(!require(pbmcapply))

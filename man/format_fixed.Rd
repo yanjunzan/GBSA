@@ -1,14 +1,14 @@
-\name{format_grand.p}
-\alias{format_grand.p}
+\name{format_fixed}
+\alias{format_fixed}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   format the genotype in the vcf file
 }
 \description{
-Give four grand parental ID in a divergent cross, this function screen the fixed sites within family and extract those called sites in an offspring.
+Give four grand parental ID in a divergent cross, this function screen the fixed sites between divergent parental lines and extract those called sites in an offspring.
 }
 \usage{
-read_grand.p(pedigreeTable, vcf.file, pathout,Core=5,pattern=paste("(^F2_",of_id,".*)|(^",of_id,"_F2.*)",sep=""))
+format_fixed(pedigreeTable, vcf.file, pathout,Core=5,pattern=paste("(^F2_",of_id,".*)|(^",of_id,"_F2.*)",sep=""))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

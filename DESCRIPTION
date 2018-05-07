@@ -1,12 +1,12 @@
 Package: GBSA
 Type: Package
-Title: Genotype imputation and QTL mapping with ultra low coverage sequencing in a F2 pedigree
+Title: Genotype imputation and QTL mapping with ultra low coverage sequencing in pedigree
 Version: 0.1.0
 Author: Yanjun Zan, Thibaut Payen, Örjan carlborg
 Maintainer: Yanjun Zan <yanjunzan@gmail.com>,Thibaut Payen <thibaut.payen@gmail.com>
 Description: This is a R package assigning genotypes to F2 offspring based on high-coverage F0 and low-coverage F2 data.
-    1.Input: pedigree, a vcf file contains all individual, and phenotypes. Details on preparing vcf file can be found
-    ...... Pipeline used in our study is publickly avaiable at 
+    1.Input: A pedigree, a vcf file contains all individual, and a matrix with id, sex, phenotypes. Details on how to prepare vcf file can be found at link...
+     Pipeline used in our study is publickly avaiable at ...
     2.Output: A genotype file that can be directly imported to Rqtl for downstream analysis, such as linkage map 
     construction, QTL mapping.
     3.Tutorial: A detailed tutorial can be found at github with following link:

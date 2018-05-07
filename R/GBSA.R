@@ -1,4 +1,4 @@
-createExact <- function(cutoffLevel,pedigreeTable,matchingNames,bin.size,pathout){
+GBSA<- function(cutoffLevel,pedigreeTable,matchingNames,bin.size,pathout){
   #py.script <- paste(system.file(package="GBSA"),"/read.vcf.grand.p.py",sep="")
   #all.chr  <- read.table(matchingNames, stringsAsFactors = FALSE, header = TRUE, sep = "\t")
   all.chr <- matchingNames

@@ -1,8 +1,9 @@
 export(
 arbitrary.cut,
 arbitrary.cut.missing,
-createExact,
-format_grand.p,
+GBSA,
+format_within_fam,
+format_fixed,
 get.info,
 read_trio,
 readFile,
