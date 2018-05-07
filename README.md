@@ -37,7 +37,7 @@ format_fixed(pedigreeTable =pedigree,vcf.file = input.vcf.fixed,pathout = outpat
   
 ### 5. Averaging the genotype call
 ```{r eval=FALSE}
-output <- createExact(cutoffLevel = 10,pedigreeTable = pedigree,matchingNames = NCBI.file,bin.size = 1e6,pathout = outpath)
+output <- GBSA(cutoffLevel = 10,pedigreeTable = pedigree,matchingNames = NCBI.file,bin.size = 1e6,pathout = outpath)
 ```
   
 ### 6.Transfering avearaged score to genotype call
