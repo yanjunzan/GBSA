@@ -51,7 +51,7 @@ genoCut <- arbitrary.cut(geno = output$genotype, upper.cut = 0.8, lower.cut = 0.
 ### 7.Format all the output to  Rqtl input
   
 ```{r eval=FALSE}
-export2rqtl(genoFile = output$genotype,phenoFile =pheFile,matchingNames =  matchingNames)
+export2rqtl(genoFile = genoCut,phenoFile =pheFile,matchingNames =  matchingNames)
 ```
 ### 8. QC and QTL mapping in R qtl
 ```{r eval=FALSE}
