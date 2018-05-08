@@ -26,7 +26,7 @@ outpath <- "/Users/yanjunzan//Documents/impute/results/GBSA.test/" # directory f
   
 ```{r eval=FALSE}
 require(GBSA)
-format_grand.p(pedigreeTable =pedigree,vcf.file = input.vcf,pathout = outpath,Core = 5) # intermediate files will be write to outpath
+format_within_fam(pedigreeTable =pedigree,vcf.file = input.vcf,pathout = outpath,Core = 5) # intermediate files will be write to outpath
 ```
   
 #### 4.2. Selecting marker fixed between divergent cross.
