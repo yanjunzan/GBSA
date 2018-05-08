@@ -12,13 +12,13 @@ R CMD INSTALL ./GBSA_0.1.0.tar.gz
 ```
 ### 3.Prepare input data
 ```{r eval=FALSE}
-# A few files are need to run the packages. Below are examples of the input data. Users will have to prepare those accordingly.
-# a vcf.gz file that has all the founders and offspring. The F0 data needs to be filtered following GATK VQSR and all indels/multi-allelic sites are removed. The F2 individuals
-# are called use our customised pipline(updating soon) and merged together with F0 data as it is.
+# A few files are needed to run the package. Below are examples of the input data. Users will have to prepare these accordingly.
+# a vcf.gz file with all the founders and offspring. The F0 data is filtered following GATK VQSR and indels/multi-allelic sites are removed. The F2 individuals
+# are called use our customised pipline(updating soon) and merged together with the F0 data as it is.
 
 input.vcf <- "/Users/yanjunzan/Documents/impute/git/data/180208.all.223+700.f2.P60.vcf.gz" 
 
-# a vcf.gz file that has genotype on the F0 founders and F2 genotyped with all fixed marker. In the case of pool seq for founders, two sudo-F0 need to be created and included.
+# a vcf.gz file that has genotype information on the F0 founders and F2 genotyped with all fixed marker. In the case of pool seq for founders, two sudo-F0 need to be created and included.
 
 input.vcf.fixed <- "/Users/yanjunzan/Documents/impute/git/data/171215_all.780.F0.output.recode.vcf.gz" 
 
