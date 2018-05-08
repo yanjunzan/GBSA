@@ -15,17 +15,28 @@ R CMD INSTALL ./GBSA_0.1.0.tar.gz
 # A few files are need to run the packages. Below are examples of the input data. Users will have to prepare those accordingly.
 # a vcf.gz file that has all the founders and offspring. The F0 data needs to be filtered following GATK VQSR and all indels/multi-allelic sites are removed. The F2 individuals
 # are called use our customised pipline(updating soon) and merged together with F0 data as it is.
+
 input.vcf <- "/Users/yanjunzan/Documents/impute/git/data/180208.all.223+700.f2.P60.vcf.gz" 
+
 # a vcf.gz file that has genotype on the F0 founders and F2 genotyped with all fixed marker. In the case of pool seq for founders, two sudo-F0 need to be created and included.
+
 input.vcf.fixed <- "/Users/yanjunzan/Documents/impute/git/data/171215_all.780.F0.output.recode.vcf.gz" 
+
 # A annotation file matching the chromsome/contig name in bam file to numerical chromsome names, and document the length of each chromsome/contig. See more in the package documentation.
+
 NCBI.file <- read.table("/Users/yanjunzan/Documents/impute/git/F2_re_seq/data/chr_id.match.txt",sep="\t",header = T,stringsAsFactors = F)
+
 #A a data.frame with 7 columns with names as id.f2, id.f2.ma, id.f2.fa, fa.h, ma.h, ma.l, fa.l. Those are F2 id, corresponding mother id,father id and grand parent ids, fa.h,ma.h must come from one line and ma.l, fa.l. from another divergent line.See more in the package documentation.
+
 pedigree <- read.table("/Users/yanjunzan/Documents/impute/git/F2_re_seq/data/Ped.f2.f2.f0.txt",sep="\t",header = T,stringsAsFactors = F)[1:5,]
+
 # A dataframe with 3 or more column as ID,sex,family id, phentpye1,...ID names have to match the ID names in genotype file.
+
 pheFile <- read.table("/Users/yanjunzan/Documents/impute/results/GBSA.test/phentoype.fam.sex.txt",sep = "\t",header=T,stringsAsFactors = T)
 pheFile <- pheFile[match(pedigree$ID,table = pheFile$ID),] # A datafram with 3 or more column as ID,sex,family id, phentpye1,...ID names have to match the ID names in genotype file
+
 # directory for store the intermediate files.
+
 outpath <- "/Users/yanjunzan//Documents/impute/results/GBSA.test/" 
 ```
   
