@@ -2,9 +2,12 @@
 
 This is a tutorial for R package GBSA. This package is developed for Whole-genome QTL mapping in experimental pedigrees from outbred founders utilizing low coverage individual based sequencing.
 
-### 2. Installation 
+### 2. Installation
+This package is dependent on python3, R package, zoo,data.table,dplyr,pbmcapply. Please make sure those dependencies are installed before proceeding.
+
 ```{bash eval=FALSE}
-# download the package from https://github.com/yanjunzan/GBSA/blob/master/GBSA_0.1.0.tar.gz
+# First download the package from https://github.com/yanjunzan/GBSA/blob/master/GBSA_0.1.0.tar.gz
+# install GBSA package by typing the following command in terminal
 R CMD INSTALL ./GBSA_0.1.0.tar.gz
 ```
 ### 3.Prepare input data
